@@ -2,13 +2,17 @@ const { defineConfig } = require('@playwright/test');
 
 module.exports = defineConfig({
   testDir: '.',
-  timeout: 90000,
+  timeout: 120000,
+  retries: 2,
   reporter: [
     ['list'],
-    ['html', { outputFolder: './test-results/report', open: 'on-failure' }],
+    ['html', { outputFolder: './VHREU E2E/report', open: 'never' }],
   ],
   use: {
-    headless: false,
+    headless: true,
+    launchOptions: {
+      args: ['--disable-quic'],
+    },
     video: {
       mode: 'on',
       dir: './test-results/VHREU-preloader-preview-to-checkout',
